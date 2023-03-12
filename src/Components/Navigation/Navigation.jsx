@@ -11,8 +11,8 @@ const Navigation = (props) => {
   // console.log(props);
 
   return (
-    <nav className='w-[100vw]'>
-      <ul className='flex flex-row items-center justify-evenly'>
+    <nav className='h-full'>
+      <ul className='flex flex-row items-center justify-evenly h-full'>
         {items.map((item) => {
           return (
             <li key={item.to}>
@@ -20,8 +20,8 @@ const Navigation = (props) => {
                 to={item.to}
                 className={(navData) =>
                   navData.isActive
-                    ? '  text-red-500 '
-                    : 'text-slate-400 hover:text-slate-700 '
+                    ? '  text-red-500'
+                    : 'text-slate-500 hover:text-slate-800 '
                 }
               >
                 {item.name}
