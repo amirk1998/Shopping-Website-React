@@ -1,7 +1,7 @@
 import Layout from '../../Layout/Layout';
 
-const Cart = () => {
+const CartList = () => {
   return <div></div>;
 };
 
-export default Cart;
+export default CartList;

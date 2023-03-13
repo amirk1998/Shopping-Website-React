@@ -26,16 +26,18 @@ const HomePage = () => {
                   className='w-full h-48 rounded-md'
                 />
               </div>
-              <div className='flex items-center justify-between w-full my-2'>
-                <p>{item.name}</p>
-                <p>{item.price} $</p>
+              <div className='flex flex-col items-center justify-between w-64 my-2 bg-purple-200 px-4 py-2 rounded-lg'>
+                <div className='flex items-center justify-between w-64 px-4'>
+                  <p>{item.name}</p>
+                  <p>{item.price} $</p>
+                </div>
+                <button
+                  onClick={() => addProductHandler(item)}
+                  className='text-purple-700 border border-purple-700 hover:border-0  hover:text-white hover:bg-purple-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mt-2'
+                >
+                  Add to Cart
+                </button>
               </div>
-              <button
-                onClick={() => addProductHandler(item)}
-                className='text-purple-700  hover:text-white hover:bg-purple-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mt-2'
-              >
-                Add to Cart
-              </button>
             </div>
           );
         })}
