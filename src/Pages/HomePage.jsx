@@ -1,12 +1,26 @@
 import Layout from '../Layout/Layout';
 import * as data from '../../data/productsData';
-import { useCartActions } from '../Providers/CartProvider';
+import { HiOutlineShoppingCart } from 'react-icons/hi2';
+import { useCart, useCartActions } from '../Providers/CartProvider';
+import { checkInCart } from '../utils/CheckInCart';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const dispatch = useCartActions();
+  const { cart } = useCart();
 
   const addProductHandler = (product) => {
     // console.log(product);
+    toast.success(`${product.name} added to cart!`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
@@ -35,7 +49,7 @@ const HomePage = () => {
                   onClick={() => addProductHandler(item)}
                   className='text-purple-700 border border-purple-700 hover:border-0  hover:text-white hover:bg-purple-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mt-2'
                 >
-                  Add to Cart
+                  {checkInCart(cart, item) ? 'In Cart' : 'Add To Cart'}
                 </button>
               </div>
             </div>

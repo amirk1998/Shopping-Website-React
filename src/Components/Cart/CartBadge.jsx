@@ -1,6 +1,5 @@
 import Layout from '../../Layout/Layout';
 import { useCart } from '../../Providers/CartProvider';
-import { HiOutlineShoppingCart } from 'react-icons/hi2';
 
 const CartBadge = () => {
   const { cart } = useCart();
