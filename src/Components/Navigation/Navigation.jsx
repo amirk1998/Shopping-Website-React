@@ -1,4 +1,5 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import CartBadge from '../Cart/CartBadge';
 import withRouter from '../HOC/withRouter';
 
 const items = [
@@ -11,8 +12,8 @@ const Navigation = (props) => {
   // console.log(props);
 
   return (
-    <nav className='h-full'>
-      <ul className='flex flex-row items-center justify-evenly h-full'>
+    <nav className='h-full flex items-center justify-between w-full'>
+      <ul className='flex flex-row items-center justify-evenly h-full w-full'>
         {items.map((item) => {
           return (
             <li key={item.to}>
@@ -24,7 +25,14 @@ const Navigation = (props) => {
                     : 'text-slate-500 hover:text-slate-800 '
                 }
               >
-                {item.name}
+                {item.name === 'Cart' ? (
+                  <div className='flex items-center'>
+                    {item.name}
+                    <CartBadge />
+                  </div>
+                ) : (
+                  item.name
+                )}
               </NavLink>
             </li>
           );
