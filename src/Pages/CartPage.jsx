@@ -9,7 +9,8 @@ import {
 const CartPage = () => {
   const { cart, totalPrice } = useCart();
   const dispatch = useCartActions();
-  console.log(cart);
+  // console.log(cart);
+  // console.log(totalPrice);
 
   const tableHeaders = ['Product', 'Price', 'Quantity', 'Total'];
 
@@ -39,10 +40,10 @@ const CartPage = () => {
     <Layout>
       <main className='flex gap-x-16 mt-2 mx-8 h-screen'>
         <section className='w-3/4'>
-          <h2 className='text-center mb-2'>Cart Details</h2>
+          <h2 className='text-center mb-2 text-slate-700'>Cart Details</h2>
           <div>
             <table className='w-full text-base text-center text-slate-700 border border-gray-300 rounded-lg'>
-              <thead className='text-base text-gray-600 uppercase bg-gray-200 text-center '>
+              <thead className='text-base text-gray-600 uppercase bg-purple-200 text-center '>
                 <tr className=''>
                   {tableHeaders.map((header) => (
                     <th scope='col' key={header} className='px-4 py-2'>
@@ -115,10 +116,10 @@ const CartPage = () => {
           </div>
         </section>
         <section>
-          <h2 className='text-center mb-2'>Cart Summary</h2>
+          <h2 className='text-center mb-2 text-slate-700'>Cart Summary</h2>
           <div>
             <table className='w-full text-base text-center text-slate-700 border border-gray-300 rounded-lg'>
-              <thead className='text-base text-gray-600 uppercase bg-gray-200 text-center '>
+              <thead className='text-base text-gray-600 uppercase bg-purple-200 text-center '>
                 <tr>
                   <th colSpan='2' className='px-4 py-2'>
                     Cart Totals
@@ -131,14 +132,14 @@ const CartPage = () => {
                   className='bg-white border-b-2 border-b-gray-300'
                 >
                   <td className='px-4 py-5'>Subtotal</td>
-                  <td className='px-4 py-5'>100$</td>
+                  <td className='px-4 py-5 text-green-600'>${totalPrice}</td>
                 </tr>
                 <tr
                   key={crypto.randomUUID()}
                   className='bg-white border-b-2 border-b-gray-300 px-4 py-2'
                 >
                   <td className='px-4 py-5'>Total</td>
-                  <td className='px-4 py-5'>100$</td>
+                  <td className='px-4 py-5 text-green-600'>${totalPrice}</td>
                 </tr>
               </tbody>
             </table>

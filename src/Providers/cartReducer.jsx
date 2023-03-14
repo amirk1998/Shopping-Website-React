@@ -16,7 +16,11 @@ const cartReducer = (state, action) => {
         updatedCart[index] = updatedItem;
       }
 
-      return { ...state, cart: updatedCart };
+      return {
+        ...state,
+        cart: updatedCart,
+        totalPrice: state.totalPrice + action.payload.price,
+      };
     }
     // ----
     case 'DECREMENT_PRODUCT': {
@@ -30,11 +34,19 @@ const cartReducer = (state, action) => {
         const filteredCart = updatedCart.filter(
           (item) => item.id !== action.payload.id
         );
-        return { ...state, cart: filteredCart };
+        return {
+          ...state,
+          cart: filteredCart,
+          totalPrice: state.totalPrice - action.payload.price,
+        };
       } else {
         updatedItem.quantity--;
         updatedCart[index] = updatedItem;
-        return { ...state, cart: updatedCart };
+        return {
+          ...state,
+          cart: updatedCart,
+          totalPrice: state.totalPrice - action.payload.price,
+        };
       }
     }
 
@@ -43,7 +55,11 @@ const cartReducer = (state, action) => {
       const filteredCart = updatedCart.filter(
         (item) => item.id !== action.payload.id
       );
-      return { ...state, cart: filteredCart };
+      return {
+        ...state,
+        cart: filteredCart,
+        totalPrice: state.totalPrice - action.payload.price,
+      };
     }
     default:
       return state;
