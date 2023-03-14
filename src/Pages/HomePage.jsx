@@ -17,7 +17,7 @@ const HomePage = () => {
           return (
             <div
               key={item.id}
-              className='flex flex-col items-center border-2 border-slate-300 rounded-lg px-4 py-2 mt-2'
+              className='flex flex-col items-center border-2 border-purple-300 rounded-lg px-4 py-2 mt-2'
             >
               <div>
                 <img

@@ -1,5 +1,5 @@
 import Layout from '../Layout/Layout';
-import { useCart } from '../Providers/CartProvider';
+import { useCart, useCartActions } from '../Providers/CartProvider';
 import {
   HiOutlineMinusSmall,
   HiOutlinePlusSmall,
@@ -8,9 +8,22 @@ import {
 
 const CartPage = () => {
   const { cart, totalPrice } = useCart();
+  const dispatch = useCartActions();
   console.log(cart);
 
   const tableHeaders = ['Product', 'Price', 'Quantity', 'Total'];
+
+  const incrementHandler = (cartItem) => {
+    dispatch({ type: 'ADD_TO_CART', payload: cartItem });
+  };
+
+  const decrementHandler = (cartItem) => {
+    dispatch({ type: 'DECREMENT_PRODUCT', payload: cartItem });
+  };
+
+  const removeHandler = (cartItem) => {
+    dispatch({ type: 'REMOVE_PRODUCT', payload: cartItem });
+  };
 
   if (!cart.length) {
     return (
@@ -42,14 +55,20 @@ const CartPage = () => {
                 {cart.map((item) => {
                   return (
                     // Product Row
-                    <tr className='bg-white border-b-2 border-b-gray-200'>
+                    <tr
+                      key={crypto.randomUUID()}
+                      className='bg-white border-b-2 border-b-gray-200'
+                    >
                       <td
                         scope='row'
                         key={crypto.randomUUID()}
                         className='px-4 py-2'
                       >
                         <div className='flex items-center px-4'>
-                          <button className='flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white rounded-full w-7 h-7 mr-6'>
+                          <button
+                            onClick={() => removeHandler(item)}
+                            className='flex items-center justify-center text-red-500 hover:bg-red-500 hover:text-white rounded-full w-7 h-7 mr-6'
+                          >
                             <HiOutlineTrash className='w-5 h-5' />
                           </button>
                           <img
@@ -65,7 +84,10 @@ const CartPage = () => {
                       </td>
                       <td key={crypto.randomUUID()} className=''>
                         <div className='flex items-center justify-center'>
-                          <button className='flex items-center justify-center w-8 h-8 border border-slate-300 rounded-sm '>
+                          <button
+                            onClick={() => decrementHandler(item)}
+                            className='flex items-center justify-center w-8 h-8 border border-slate-300 rounded-sm '
+                          >
                             <HiOutlineMinusSmall className='w-4 h-4 ' />
                           </button>
 
@@ -73,7 +95,10 @@ const CartPage = () => {
                             {item.quantity}
                           </div>
 
-                          <button className='flex items-center justify-center w-8 h-8 border border-slate-300 rounded-sm'>
+                          <button
+                            onClick={() => incrementHandler(item)}
+                            className='flex items-center justify-center w-8 h-8 border border-slate-300 rounded-sm'
+                          >
                             <HiOutlinePlusSmall className='w-4 h-4 ' />
                           </button>
                         </div>
@@ -101,11 +126,17 @@ const CartPage = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className='bg-white border-b-2 border-b-gray-300'>
+                <tr
+                  key={crypto.randomUUID()}
+                  className='bg-white border-b-2 border-b-gray-300'
+                >
                   <td className='px-4 py-5'>Subtotal</td>
                   <td className='px-4 py-5'>100$</td>
                 </tr>
-                <tr className='bg-white border-b-2 border-b-gray-300 px-4 py-2'>
+                <tr
+                  key={crypto.randomUUID()}
+                  className='bg-white border-b-2 border-b-gray-300 px-4 py-2'
+                >
                   <td className='px-4 py-5'>Total</td>
                   <td className='px-4 py-5'>100$</td>
                 </tr>
