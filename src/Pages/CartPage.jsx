@@ -9,7 +9,7 @@ import {
 const CartPage = () => {
   const { cart, totalPrice } = useCart();
   const dispatch = useCartActions();
-  // console.log(cart);
+  console.log(cart);
   // console.log(totalPrice);
 
   const tableHeaders = ['Product', 'Price', 'Quantity', 'Total'];
