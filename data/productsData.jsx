@@ -18,7 +18,7 @@ export const products = [
     description: [{ support: 'گارانتی مادام العمر' }, { support: 'اورجینال' }],
     price: 110,
     offPrice: 100,
-    discount: 8,
+    discount: 10,
     image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=7405',
   },
   {
@@ -44,7 +44,7 @@ export const products = [
     ],
     price: 260,
     offPrice: 220,
-    discount: 15,
+    discount: 40,
     image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=1963',
   },
   {
@@ -70,7 +70,7 @@ export const products = [
     ],
     price: 220,
     offPrice: 200,
-    discount: 13,
+    discount: 20,
     image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=949',
   },
 ];

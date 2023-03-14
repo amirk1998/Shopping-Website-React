@@ -7,12 +7,12 @@ import {
 } from 'react-icons/hi2';
 
 const CartPage = () => {
-  const { cart, totalPrice } = useCart();
+  const { cart, totalPrice, discount } = useCart();
   const dispatch = useCartActions();
   console.log(cart);
   // console.log(totalPrice);
 
-  const tableHeaders = ['Product', 'Price', 'Quantity', 'Total'];
+  const tableHeaders = ['Product', 'Price', 'Quantity', 'Discount', 'Total'];
 
   const incrementHandler = (cartItem) => {
     dispatch({ type: 'ADD_TO_CART', payload: cartItem });
@@ -43,7 +43,7 @@ const CartPage = () => {
           <h2 className='text-center mb-2 text-slate-700'>Cart Details</h2>
           <div>
             <table className='w-full text-base text-center text-slate-700 border border-gray-300 rounded-lg'>
-              <thead className='text-base text-gray-600 uppercase bg-purple-200 text-center '>
+              <thead className='text-base text-gray-600 uppercase bg-purple-200 text-center w-full '>
                 <tr className=''>
                   {tableHeaders.map((header) => (
                     <th scope='col' key={header} className='px-4 py-2'>
@@ -104,9 +104,11 @@ const CartPage = () => {
                           </button>
                         </div>
                       </td>
-
                       <td className='text-green-600'>
-                        $ {item.quantity * item.price}
+                        $ {item.discount * item.quantity}
+                      </td>
+                      <td className='text-green-600'>
+                        $ {item.offPrice * item.quantity}
                       </td>
                     </tr>
                   );
@@ -131,15 +133,24 @@ const CartPage = () => {
                   key={crypto.randomUUID()}
                   className='bg-white border-b-2 border-b-gray-300'
                 >
-                  <td className='px-4 py-5'>Subtotal</td>
+                  <td className='px-4 py-5'>Total Price</td>
                   <td className='px-4 py-5 text-green-600'>${totalPrice}</td>
                 </tr>
                 <tr
                   key={crypto.randomUUID()}
                   className='bg-white border-b-2 border-b-gray-300 px-4 py-2'
                 >
-                  <td className='px-4 py-5'>Total</td>
-                  <td className='px-4 py-5 text-green-600'>${totalPrice}</td>
+                  <td className='px-4 py-5'>Discount</td>
+                  <td className='px-4 py-5 text-green-600'>${discount}</td>
+                </tr>
+                <tr
+                  key={crypto.randomUUID()}
+                  className='bg-white border-b-2 border-b-gray-300 px-4 py-2'
+                >
+                  <td className='px-4 py-5'>Net Price</td>
+                  <td className='px-4 py-5 text-green-600'>
+                    ${totalPrice - discount}
+                  </td>
                 </tr>
               </tbody>
             </table>

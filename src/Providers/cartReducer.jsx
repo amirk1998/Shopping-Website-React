@@ -17,6 +17,7 @@ const cartReducer = (state, action) => {
       ...state,
       cart: updatedCart,
       totalPrice: state.totalPrice + payload.price,
+      discount: state.discount + payload.discount,
     };
   };
 
@@ -31,6 +32,7 @@ const cartReducer = (state, action) => {
         ...state,
         cart: filteredCart,
         totalPrice: state.totalPrice - payload.price,
+        discount: state.discount - payload.discount,
       };
     } else {
       updatedItem.quantity--;
@@ -39,6 +41,7 @@ const cartReducer = (state, action) => {
         ...state,
         cart: updatedCart,
         totalPrice: state.totalPrice - payload.price,
+        discount: state.discount - payload.discount,
       };
     }
   };
@@ -50,6 +53,7 @@ const cartReducer = (state, action) => {
       ...state,
       cart: filteredCart,
       totalPrice: state.totalPrice - payload.price * payload.quantity,
+      discount: state.discount - payload.discount * payload.quantity,
     };
   };
 
