@@ -12,7 +12,12 @@ const Input = ({ label, name, formik, type = 'text' }) => {
         id={name}
         name={name}
         {...formik.getFieldProps(name)}
-        className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:outline-none block w-full p-2.5'
+        // className='bg-gray-50 border-2 border-gray-300 text-gray-900 text-lg rounded-lg  focus:border-purple-500 focus:outline-none block w-full p-2.5'
+        className={`bg-gray-50 border-2 text-gray-900 text-lg rounded-lg   focus:border-purple-500 focus:outline-none block w-full p-2.5 ${
+          formik.errors[name] && formik.touched[name]
+            ? 'border-red-500'
+            : 'border-gray-300'
+        }`}
         placeholder={label}
         required
       />

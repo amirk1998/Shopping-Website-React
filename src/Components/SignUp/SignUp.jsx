@@ -67,8 +67,14 @@ const SignUpForm = () => {
           Sign up Form
         </h1>
         <Input formik={formik} name='name' label='Name' />
-        <Input formik={formik} name='phoneNumber' label='Phone Number' />
-        <Input formik={formik} name='email' label='Email' />
+        <Input
+          formik={formik}
+          name='phoneNumber'
+          label='Phone Number'
+          type='tel'
+          min='11'
+        />
+        <Input formik={formik} name='email' label='Email' type='email' />
         <Input
           formik={formik}
           name='password'
