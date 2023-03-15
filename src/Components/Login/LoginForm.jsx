@@ -62,7 +62,7 @@ const LoginForm = () => {
         >
           Login
         </button>
-        <Link to={'/Signup'}>
+        <Link to={'/signup'}>
           <p className='text-slate-900 hover:text-blue-500 text-base'>
             Not Signup yet ?
           </p>
