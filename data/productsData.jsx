@@ -73,4 +73,30 @@ export const products = [
     discount: 20,
     image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=949',
   },
+  {
+    id: 7,
+    name: 'Product 7',
+    description: [
+      { support: 'گارانتی مادام العمر' },
+      { support: 'ارسال رایگان' },
+      { support: 'اورجینال' },
+    ],
+    price: 79,
+    offPrice: 69,
+    discount: 10,
+    image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=3360',
+  },
+  {
+    id: 8,
+    name: 'Product 8',
+    description: [
+      { support: 'گارانتی مادام العمر' },
+      { support: 'ارسال رایگان' },
+      { support: 'اورجینال' },
+    ],
+    price: 139,
+    offPrice: 119,
+    discount: 20,
+    image: 'https://api.lorem.space/image/shoes?w=640&h=480&r=7423',
+  },
 ];

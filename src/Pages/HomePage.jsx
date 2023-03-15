@@ -26,7 +26,7 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <section className='grid grid-cols-3 items-center gap-3 mt-2 mx-8'>
+      <section className='grid grid-cols-3 xl:grid-cols-4 items-center gap-3 mt-2 mx-8'>
         {data.products.map((item) => {
           return (
             <div
