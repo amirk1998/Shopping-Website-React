@@ -5,6 +5,8 @@ import withRouter from '../HOC/withRouter';
 const items = [
   { name: 'Home', to: '/' },
   { name: 'Cart', to: '/cart' },
+  { name: 'Sign Up', to: '/signup' },
+  { name: 'Login', to: '/login' },
 ];
 
 const Navigation = (props) => {
