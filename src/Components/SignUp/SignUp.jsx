@@ -113,18 +113,9 @@ const SignUpForm = () => {
           Signup
         </button>
 
-        {error &&
-          toast.error(`${error}`, {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            toastId: 'custom-id-yes',
-            theme: 'colored',
-          }) && <p className='text-red-500 text-lg'>{error}</p>}
+        {error && <ToastifyComp text={`${error}`} type='error' />}
+        {error && <p className='text-red-500 text-lg'>{error}</p>}
+
         <Link to={'/login'}>
           <p className='text-slate-900 hover:text-blue-500 text-base'>
             Already Login ?
