@@ -1,6 +1,10 @@
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+// import { toast } from 'material-react-toastify';
 
 const ToastifyComp = ({ text, type }) => {
+  const customId = 'custom-id-yes';
+
   const options = {
     position: 'top-right',
     autoClose: 3000,
@@ -9,7 +13,7 @@ const ToastifyComp = ({ text, type }) => {
     pauseOnHover: false,
     draggable: true,
     progress: undefined,
-    toastId: 'custom-id-yes',
+    toastId: customId,
     theme: 'colored',
   };
 

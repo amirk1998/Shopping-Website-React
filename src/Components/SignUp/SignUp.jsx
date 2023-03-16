@@ -71,7 +71,7 @@ const SignUpForm = () => {
   });
 
   return (
-    <div className='h-screen w-1/2'>
+    <div className='h-screen w-1/2 z-20'>
       <form
         onSubmit={formik.handleSubmit}
         className=' flex flex-col items-center bg-gray-50 border-2 border-slate-300 shadow-md rounded-lg px-8 py-4'
@@ -113,8 +113,8 @@ const SignUpForm = () => {
           Signup
         </button>
 
+        {error && <p className='text-red-500 text-sm text-center'>{error}</p>}
         {error && <ToastifyComp text={`${error}`} type='error' />}
-        {error && <p className='text-red-500 text-lg'>{error}</p>}
 
         <Link to={'/login'}>
           <p className='text-slate-900 hover:text-blue-500 text-base'>

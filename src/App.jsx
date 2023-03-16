@@ -8,7 +8,7 @@ import ScrollToTop from './Common/ScrollToTop';
 
 function App() {
   return (
-    <div className='App flex- flex-col bg-gray-100 w-full h-auto'>
+    <div className='App flex- flex-col bg-gray-100 w-full min-h-full h-[150vh]'>
       <CartProvider>
         <ToastContainer />
         <ScrollToTop />
