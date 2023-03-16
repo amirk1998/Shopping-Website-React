@@ -1,0 +1,32 @@
+###
+GET http://localhost:5000/api/product HTTP/1.1
+
+###
+POST http://localhost:5000/api/user/register HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "123Abc@123@@",
+    "name":"Test Name",
+    "phoneNumber":"09182471500"
+}
+
+###
+POST http://localhost:5000/api/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "123Abc@123@@"
+}
+
+
+###
+POST http://localhost:5000/api/user/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "testfsdfs@test.com",
+    "password": "123Abc@123@@"
+}

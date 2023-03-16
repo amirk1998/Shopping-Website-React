@@ -4,6 +4,9 @@ import * as Yup from 'yup';
 import Input from '../../Common/Input';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { signUpUser } from '../../services/signUpService';
+import { toast } from 'react-toastify';
+import ToastifyComp from '../Toastify/Toastify';
 
 const initialValues = {
   name: '',
@@ -38,15 +41,25 @@ const validationSchema = Yup.object({
 });
 
 const SignUpForm = () => {
-  // const [formValues, setFormValues] = useState(null);
+  //
+  const [error, setError] = useState(null);
 
-  const onSubmit = (values) => {
-    console.log(values);
-    // const data = { ...values, DateCreated: new Date().toLocaleString() };
-    // addNewUser(data)
-    //   .then((res) => console.log(res))
-    //   .catch((error) => console.log(error));
-    // // console.log(data);
+  const onSubmit = async (values) => {
+    const { name, phoneNumber, email, password } = values;
+    const userData = {
+      name,
+      phoneNumber,
+      email,
+      password,
+    };
+    try {
+      const { data } = await signUpUser(userData);
+      console.log(data);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   const formik = useFormik({
@@ -55,7 +68,6 @@ const SignUpForm = () => {
     onSubmit,
     validationSchema,
     validateOnMount: true,
-    enableReinitialize: true,
   });
 
   return (
@@ -100,6 +112,19 @@ const SignUpForm = () => {
         >
           Signup
         </button>
+
+        {error &&
+          toast.error(`${error}`, {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            toastId: 'custom-id-yes',
+            theme: 'colored',
+          }) && <p className='text-red-500 text-lg'>{error}</p>}
         <Link to={'/login'}>
           <p className='text-slate-900 hover:text-blue-500 text-base'>
             Already Login ?
