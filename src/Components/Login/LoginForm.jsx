@@ -2,6 +2,9 @@ import Input from '../../Common/Input';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../../services/loginService';
+import { useEffect, useState } from 'react';
+import ToastifyComp from '../Toastify/Toastify';
 
 const initialValues = {
   email: '',
@@ -16,13 +19,17 @@ const validationSchema = Yup.object({
 });
 
 const LoginForm = () => {
-  const onSubmit = (values) => {
-    console.log(values);
-    // const data = { ...values, DateCreated: new Date().toLocaleString() };
-    // addNewUser(data)
-    //   .then((res) => console.log(res))
-    //   .catch((error) => console.log(error));
-    // // console.log(data);
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (values) => {
+    try {
+      const { data } = await loginUser(values);
+      setError(null);
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   const formik = useFormik({
@@ -62,6 +69,10 @@ const LoginForm = () => {
         >
           Login
         </button>
+
+        {error && <p className='text-red-500 text-sm text-center'>{error}</p>}
+        {error && <ToastifyComp text={`${error}`} type='error' />}
+
         <Link to={'/signup'}>
           <p className='text-slate-900 hover:text-blue-500 text-base'>
             Not Signup yet ?
