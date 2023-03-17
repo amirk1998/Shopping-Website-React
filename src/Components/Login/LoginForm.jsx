@@ -77,7 +77,7 @@ const LoginForm = () => {
         {error && <ToastifyComp text={`${error}`} type='error' />}
 
         <Link to={'/signup'}>
-          <p className='text-slate-900 hover:text-blue-500 text-base'>
+          <p className='text-blue-500 hover:text-blue-800 text-base'>
             Not Signup yet ?
           </p>
         </Link>
