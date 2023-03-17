@@ -1,9 +1,9 @@
 import Input from '../../Common/Input';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../services/loginService';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ToastifyComp from '../Toastify/Toastify';
 
 const initialValues = {
@@ -21,10 +21,13 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
   const [error, setError] = useState(null);
 
+  let navigate = useNavigate();
+
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
       setError(null);
+      navigate('/');
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);

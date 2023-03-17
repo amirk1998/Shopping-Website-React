@@ -7,12 +7,10 @@ const items = [
   { name: 'Cart', to: '/cart' },
   { name: 'Sign Up', to: '/signup' },
   { name: 'Login', to: '/login' },
+  { name: 'Profile', to: '/profile' },
 ];
 
-const Navigation = (props) => {
-  // let location = useLocation();
-  // console.log(props);
-
+const Navigation = () => {
   return (
     <nav className='h-full flex items-center justify-between w-full'>
       <ul className='flex flex-row items-center justify-evenly h-full w-full'>

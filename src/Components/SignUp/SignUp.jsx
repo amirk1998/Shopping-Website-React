@@ -1,11 +1,9 @@
-import Layout from '../../Layout/Layout';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../Common/Input';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signUpUser } from '../../services/signUpService';
-import { toast } from 'react-toastify';
 import ToastifyComp from '../Toastify/Toastify';
 
 const initialValues = {
@@ -40,9 +38,11 @@ const validationSchema = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
-const SignUpForm = () => {
-  //
+const SignUpForm = (props) => {
   const [error, setError] = useState(null);
+
+  let navigate = useNavigate();
+  // console.log(navigate);
 
   const onSubmit = async (values) => {
     const { name, phoneNumber, email, password } = values;
@@ -55,6 +55,7 @@ const SignUpForm = () => {
     try {
       const { data } = await signUpUser(userData);
       setError(null);
+      navigate('/');
       console.log(data);
     } catch (error) {
       if (error.response && error.response.data.message) {
