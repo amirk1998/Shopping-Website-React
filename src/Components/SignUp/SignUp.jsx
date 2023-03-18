@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpUser } from '../../services/signUpService';
 import ToastifyComp from '../Toastify/Toastify';
+import { useAuthAction } from '../../Providers/AuthProvider';
 
 const initialValues = {
   name: '',
@@ -41,6 +42,8 @@ const validationSchema = Yup.object({
 const SignUpForm = (props) => {
   const [error, setError] = useState(null);
 
+  const setAuth = useAuthAction();
+
   let navigate = useNavigate();
   // console.log(navigate);
 
@@ -54,6 +57,8 @@ const SignUpForm = (props) => {
     };
     try {
       const { data } = await signUpUser(userData);
+      setAuth(data);
+      localStorage.setItem('authState', JSON.stringify(data));
       setError(null);
       navigate('/');
       console.log(data);

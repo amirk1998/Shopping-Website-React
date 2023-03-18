@@ -42,7 +42,7 @@ const CartPage = () => {
     <Layout>
       <main className='flex gap-x-16 mt-8 mx-8 h-screen'>
         <section className='w-3/4'>
-          <h2 className='text-center mb-4 text-2xl font-bold text-slate-700'>
+          <h2 className='text-center text-xl mb-2 xl:text-2xl xl:mb-4 font-bold text-slate-700'>
             Cart Details
           </h2>
           <div>
@@ -122,7 +122,7 @@ const CartPage = () => {
           </div>
         </section>
         <section className='w-[16%] xl:w-[20%]'>
-          <h2 className='text-center text-2xl mb-4 text-slate-700 font-bold'>
+          <h2 className='text-center text-xl mb-2 xl:text-2xl xl:mb-4 text-slate-700 font-bold'>
             Cart Summary
           </h2>
           <div className='flex flex-col items-center h-96'>
