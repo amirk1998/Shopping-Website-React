@@ -1,7 +1,25 @@
 import { useAuth } from '../../Providers/AuthProvider';
+import { Link } from 'react-router-dom';
+import ToastifyComp from '../Toastify/Toastify';
 
 const ProfileComponent = () => {
-  const { name, email, phoneNumber } = useAuth();
+  const userData = useAuth();
+  const { name, email, phoneNumber } = userData;
+
+  if (!userData) {
+    return (
+      <div className='bg-white rounded-xl flex flex-col items-center px-8 py-4 mt-4 w-full h-screen'>
+        <h2 className='text-2xl mb-4'>You have not Logged In !</h2>
+        <Link to={'/login'}>
+          <p className='text-blue-500 hover:text-blue-800 text-lg'>
+            Please Login
+          </p>
+        </Link>
+        <ToastifyComp text='You have not Logged In !' type='warn' />
+      </div>
+    );
+  }
+
   return (
     <div className='bg-white rounded-xl flex flex-col items-center px-8 py-4 mt-4 w-full h-screen'>
       <h1 className='text-4xl mt-2 mb-6'>Profile Details</h1>

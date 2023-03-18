@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 // import { toast } from 'material-react-toastify';
 
 const ToastifyComp = ({ text, type }) => {
-  const customId = 'custom-id-yes';
+  // const customId = 'custom-id-yes';
+  const customId = '';
 
   const options = {
     position: 'top-right',

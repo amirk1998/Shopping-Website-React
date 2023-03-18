@@ -29,11 +29,11 @@ const CartList = () => {
 
   if (!cart.length) {
     return (
-      <divss>
+      <div>
         <main className='flex flex-col items-center gap-3 mt-2 mx-8 h-screen'>
           <h2 className='text-center text-2xl'>Cart is empty</h2>
         </main>
-      </divss>
+      </div>
     );
   }
 
