@@ -1,10 +1,15 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../../Providers/AuthProvider';
 import CartBadge from '../Cart/CartBadge';
-import withRouter from '../HOC/withRouter';
 
 const Navigation = () => {
   const userData = useAuth();
+  let navigate = useNavigate();
+  let params = useParams();
+  let location = useLocation();
+
+  // let navRoutes = { ...navigate, ...params, ...location };
+  // console.log(navRoutes);
 
   return (
     <nav className='h-full flex items-center justify-between w-full sticky top-0 px-4'>
@@ -26,8 +31,8 @@ const Navigation = () => {
         </ul>
       </div>
 
-      <div className={userData ? 'w-[20%]' : 'w-1/4'}>
-        <ul className='flex flex-row items-center justify-between h-full w-full mr-2'>
+      <div className='w-[20%]'>
+        <ul className='flex flex-row items-center justify-between h-full w-full mr-2 '>
           <li>
             <NavLink
               to={'/cart'}
@@ -61,7 +66,7 @@ const Navigation = () => {
   );
 };
 
-export default withRouter(Navigation);
+export default Navigation;
 
 // Method 2:
 {

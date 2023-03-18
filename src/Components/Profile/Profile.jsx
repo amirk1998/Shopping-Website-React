@@ -1,6 +1,7 @@
 import { useAuth } from '../../Providers/AuthProvider';
 import { Link } from 'react-router-dom';
 import ToastifyComp from '../Toastify/Toastify';
+import { useEffect } from 'react';
 
 const ProfileComponent = () => {
   const userData = useAuth();
