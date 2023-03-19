@@ -1,6 +1,4 @@
-import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-// import { toast } from 'material-react-toastify';
 
 const ToastifyComp = ({ text, type }) => {
   // const customId = 'custom-id-yes';

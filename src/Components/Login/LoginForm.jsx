@@ -19,6 +19,8 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Password is Required'),
 });
 
+const LOCAL_STORAGE_AUTH_KEY = 'authState';
+
 const LoginForm = () => {
   const [error, setError] = useState(null);
 
@@ -30,7 +32,7 @@ const LoginForm = () => {
     try {
       const { data } = await loginUser(values);
       setAuth(data);
-      localStorage.setItem('authState', JSON.stringify(data));
+      localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(data));
       setError(null);
       navigate('/');
     } catch (error) {

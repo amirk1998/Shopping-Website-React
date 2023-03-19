@@ -1,7 +1,9 @@
 import { useAuth } from '../../Providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ToastifyComp from '../Toastify/Toastify';
-import { useEffect } from 'react';
+
+const LOCAL_STORAGE_AUTH_KEY = 'authState';
 
 const ProfileComponent = () => {
   const userData = useAuth();
