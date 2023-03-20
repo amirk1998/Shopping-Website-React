@@ -93,10 +93,8 @@ const CheckOut = () => {
             </tbody>
           </table>
         </div>
-        {/* Summary Price  */}
       </div>
 
-      {/*  */}
       <div className=' flex flex-col items-center mt-2 w-[20%] pr-4'>
         <h1 className='text-2xl xl:text-4xl mb-2'>Profile Details</h1>
         <table className='w-1/3 text-lg text-center text-slate-700 border border-slate-300 rounded-xl'>
@@ -121,6 +119,7 @@ const CheckOut = () => {
             </tr>
           </tbody>
         </table>
+        {/* Summary Price  */}
         <div className='mt-4 w-full'>
           <h2 className='text-center text-xl mb-2 xl:text-2xl xl:mb-4 text-slate-700 font-bold'>
             Cart Summary
