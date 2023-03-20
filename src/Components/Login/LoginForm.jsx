@@ -3,9 +3,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../services/loginService';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ToastifyComp from '../Toastify/Toastify';
-import { useAuthAction } from '../../Providers/AuthProvider';
+import { useAuth, useAuthAction } from '../../Providers/AuthProvider';
+import { useQuery } from '../../Hooks/useQuery';
 
 const initialValues = {
   email: '',
@@ -23,10 +24,15 @@ const LOCAL_STORAGE_AUTH_KEY = 'authState';
 
 const LoginForm = () => {
   const [error, setError] = useState(null);
-
+  let query = useQuery();
+  const redirect = query.get('redirect') || '/';
   const setAuth = useAuthAction();
-
+  const auth = useAuth();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth) navigate(`/${redirect}`, { replace: true });
+  }, [redirect, auth]);
 
   const onSubmit = async (values) => {
     try {
@@ -34,7 +40,7 @@ const LoginForm = () => {
       setAuth(data);
       localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(data));
       setError(null);
-      navigate('/');
+      navigate(`/${redirect}`, { replace: true });
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -83,7 +89,7 @@ const LoginForm = () => {
         {error && <p className='text-red-500 text-sm text-center'>{error}</p>}
         {error && <ToastifyComp text={`${error}`} type='error' />}
 
-        <Link to={'/signup'}>
+        <Link to={`/signup?redirect=${redirect}`}>
           <p className='text-blue-500 hover:text-blue-800 text-base'>
             Not Signup yet ?
           </p>

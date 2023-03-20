@@ -159,7 +159,7 @@ const CartList = () => {
                 </tr>
               </tbody>
             </table>
-            <Link to={'/checkout'}>
+            <Link to={'/signup?redirect=checkout'}>
               <button className='text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2.5 py-2.5  xl:px-5 text-center inline-flex items-center mt-2 '>
                 <HiShoppingCart className='mr-2' /> Go to Checkout
               </button>

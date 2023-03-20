@@ -1,11 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Input from '../../Common/Input';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signUpUser } from '../../services/signUpService';
 import ToastifyComp from '../Toastify/Toastify';
-import { useAuthAction } from '../../Providers/AuthProvider';
+import { useAuth, useAuthAction } from '../../Providers/AuthProvider';
+import { useQuery } from '../../Hooks/useQuery';
 
 const initialValues = {
   name: '',
@@ -43,11 +44,15 @@ const LOCAL_STORAGE_AUTH_KEY = 'authState';
 
 const SignUpForm = (props) => {
   const [error, setError] = useState(null);
-
+  let query = useQuery();
+  const redirect = query.get('redirect') || '/';
   const setAuth = useAuthAction();
-
+  const auth = useAuth();
   let navigate = useNavigate();
-  // console.log(navigate);
+
+  useEffect(() => {
+    if (auth) navigate(`/${redirect}`, { replace: true });
+  }, [redirect, auth]);
 
   const onSubmit = async (values) => {
     const { name, phoneNumber, email, password } = values;
@@ -62,7 +67,7 @@ const SignUpForm = (props) => {
       setAuth(data);
       localStorage.setItem(LOCAL_STORAGE_AUTH_KEY, JSON.stringify(data));
       setError(null);
-      navigate('/');
+      navigate(`/${redirect}`, { replace: true });
       console.log(data);
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -125,8 +130,8 @@ const SignUpForm = (props) => {
         {error && <p className='text-red-500 text-sm text-center'>{error}</p>}
         {error && <ToastifyComp text={`${error}`} type='error' />}
 
-        <Link to={'/login'}>
-          <p className='text-slate-900 hover:text-blue-500 text-base'>
+        <Link to={`/login?redirect=${redirect}`}>
+          <p className='text-blue-500 hover:text-blue-800 text-base'>
             Already Login ?
           </p>
         </Link>

@@ -4,23 +4,26 @@ import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import { useCart, useCartActions } from '../Providers/CartProvider';
 import { checkInCart } from '../utils/CheckInCart';
 import { toast } from 'react-toastify';
+import ToastifyComp from '../Components/Toastify/Toastify';
 
 const HomePage = () => {
   const dispatch = useCartActions();
   const { cart } = useCart();
 
+  const toastOptions = {
+    position: 'top-right',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+  };
+
   const addProductHandler = (product) => {
     // console.log(product);
-    toast.success(`${product.name} added to cart!`, {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    toast.success(`${product.name} added to cart!`, toastOptions);
     dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
